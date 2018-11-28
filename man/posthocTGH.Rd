@@ -67,7 +67,7 @@ This function is a wrapper of userfriendlyscience::posthocTGH
 }
 \examples{
 ### Compute post-hoc statistics using the tukey method
-posthocTGH(y=warpbreaks$breaks, x=warpbreaks$tension, method="tukey")
+posthocTGH(y=ChickWeight$weight, x=ChickWeight$Diet, method="tukey")
 posthocTGH(weight ~ Diet, data = ChickWeight, method="tukey")
 
 ### Compute post-hoc statistics using the games-howell method

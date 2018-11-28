@@ -1,7 +1,7 @@
 Package: compwrap
 Type: Package
 Title: Wrapper functions of brunner.munzel.test and posthocTGH
-Version: 0.0.2
+Version: 0.0.3
 Date: 2018-11-28
 Authors@R: person("Toshiaki", "Ara", email = "toshiaki.ara@gmail.com",
   role = c("aut", "cre"))
