@@ -71,10 +71,10 @@ brunner.munzel.permutation.test(value ~ group, data = dat)
 ### Comparison with other methods
 
 ```{r, message=FALSE}
-# Wilcoxson sum-rank test
+# Wilcoxon sum-rank test
 wilcox.test(value ~ group, data = dat)
 
-# exact Wilcoxson sum-rank test
+# exact Wilcoxon sum-rank test
 library(coin)
 wilcox_test(value ~ group, data = dat, distribution = "exact")
 ```
