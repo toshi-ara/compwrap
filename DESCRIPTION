@@ -1,12 +1,12 @@
 Package: compwrap
 Type: Package
 Title: Wrapper functions of brunner.munzel.test and posthocTGH
-Version: 0.1.1
-Date: 2018-11-29
+Version: 0.2.1
+Date: 2019-03-29
 Authors@R: person("Toshiaki", "Ara", email = "toshiaki.ara@gmail.com",
   role = c("aut", "cre"))
 License: GPL (>=3)
-Depends:  lawstat, userfriendlyscience
+Depends: userfriendlyscience
 Description: Wrapper functions of lawstat::brunner.munzel.test
     and userfriendlyscience::posthocTGH 
     This package enables to use formula as argument.

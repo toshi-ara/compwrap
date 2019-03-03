@@ -1,161 +1,25 @@
 ---
 title:compwrap (Comparison Wrapper functions)
 author: Toshiaki Ara
-date: "2018-11-29"
+date: "2019-03-03"
 ---
 
 # Introduction
 
-This package contains two wrapper functions.
+This package contains two wrapper function.
 
-1. brunner.munzel.test in lawstat package
-2. posthocTGH in userfriendlyscience package
+1. posthocTGH in userfriendlyscience package
 
-These functions in compwrap package accept formula.
-
-Also, this package provide a function for
- permuted Brunner-Munzel test
- in the case of small sample size.
+This function in compwrap package accepts formula.
 
 # Installation
 
 
 ```r
-library(devtools)
-install_github("toshi-ara/compwrap")
+remote::install_github("toshi-ara/compwrap")
 ```
 
 # Example
-## Brunner-Munzel test
-
-```r
-Y <- c(1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 4, 1, 1)
-N <- c(3, 3, 4, 3, 1, 2, 3, 1, 1, 5, 4)
-
-dat <- data.frame(
-    value = c(Y, N),
-    group = factor(rep(c("Y", "N"), c(length(Y), length(N))),
-                   levels = c("Y", "N"))
-)
-
-library(compwrap)
-
-## Default
-brunner.munzel.test(Y, N)
-```
-
-```
-## 
-## 	Brunner-Munzel Test
-## 
-## data:  x and y
-## Brunner-Munzel Test Statistic = 3.1375, df = 17.683, p-value =
-## 0.005786
-## 95 percent confidence interval:
-##  0.5952169 0.9827052
-## sample estimates:
-## P(X<Y)+.5*P(X=Y) 
-##         0.788961
-```
-
-```r
-## Formula interface
-brunner.munzel.test(value ~ group, data = dat)
-```
-
-```
-## 
-## 	Brunner-Munzel Test
-## 
-## data:  value by group
-## Brunner-Munzel Test Statistic = 3.1375, df = 17.683, p-value =
-## 0.005786
-## 95 percent confidence interval:
-##  0.5952169 0.9827052
-## sample estimates:
-## P(X<Y)+.5*P(X=Y) 
-##         0.788961
-```
-
-## permuted Brunner-Munzel test
-
-`brunner.munzel.permutation.test` takes time to obtain results.
-
-
-```r
-library(compwrap)
-
-Y <-  c(1,2,1,3,1,2,2,4,1,1)
-N <-  c(3,4,5,2,3,2,1,5,4,3)
-
-dat <- data.frame(
-    value = c(Y, N),
-    group = factor(rep(c("Y", "N"), c(length(Y), length(N))),
-                   levels = c("Y", "N"))
-)
-
-## Default
-brunner.munzel.permutation.test(Y, N)
-```
-
-```
-## 
-## 	Brunner-Munzel Permutation Test
-## 
-## data:  Y and N
-## p-value = 0.02004
-```
-
-```r
-## Formula interface
-brunner.munzel.permutation.test(value ~ group, data = dat)
-```
-
-```
-## 
-## 	Brunner-Munzel Permutation Test
-## 
-## data:  value by group
-## p-value = 0.02004
-```
-
-### Comparison with other methods
-
-
-```r
-# Wilcoxon sum-rank test
-wilcox.test(value ~ group, data = dat)
-```
-
-```
-## Warning in wilcox.test.default(x = c(1, 2, 1, 3, 1, 2, 2, 4, 1, 1), y =
-## c(3, : cannot compute exact p-value with ties
-```
-
-```
-## 
-## 	Wilcoxon rank sum test with continuity correction
-## 
-## data:  value by group
-## W = 20, p-value = 0.02196
-## alternative hypothesis: true location shift is not equal to 0
-```
-
-```r
-# exact Wilcoxon sum-rank test
-library(coin)
-wilcox_test(value ~ group, data = dat, distribution = "exact")
-```
-
-```
-## 
-## 	Exact Wilcoxon-Mann-Whitney Test
-## 
-## data:  value by group (Y, N)
-## Z = -2.3299, p-value = 0.0207
-## alternative hypothesis: true mu is not equal to 0
-```
-
 ## Tukey test and Games-Howell test
 
 

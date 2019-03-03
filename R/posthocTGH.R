@@ -46,13 +46,17 @@ posthocTGH <- function(...) UseMethod("posthocTGH")
 #' two objects 'tukey' and 'games.howell', containing the outcomes for the
 #' respective post-hoc tests.}
 #'
-posthocTGH.default <- function(y, x, method=c("games-howell", "tukey"),
-                               conf.level = 0.95, digits=2,
-                               p.adjust="none", formatPvalue = TRUE, ...) {
-    userfriendlyscience::posthocTGH(y = y, x = x, method = method,
-                               conf.level = conf.level, digits = digits,
-                               p.adjust = p.adjust, formatPvalue = formatPvalue)
-}
+posthocTGH.default <-
+    function(y, x, method=c("games-howell", "tukey"),
+             conf.level = 0.95, digits=2,
+             p.adjust="none", formatPvalue = TRUE, ...) {
+        userfriendlyscience::posthocTGH(y = y, x = x,
+                                        method = method,
+                                        conf.level = conf.level,
+                                        digits = digits,
+                                        p.adjust = p.adjust,
+                                        formatPvalue = formatPvalue)
+    }
 
 
 #' @rdname posthocTGH
@@ -72,18 +76,21 @@ posthocTGH.default <- function(y, x, method=c("games-howell", "tukey"),
 #'
 posthocTGH.formula <- function(formula, data, subset, na.action, ...)
 {
-    if(missing(formula)
-       || (length(formula) != 3L)
-       || (length(attr(terms(formula[-2L]), "term.labels")) != 1L))
+    if (missing(formula)
+        || (length(formula) != 3L)
+        || (length(attr(terms(formula[-2L]), "term.labels")) != 1L))
         stop("'formula' missing or incorrect")
+
     m <- match.call(expand.dots = FALSE)
-    if(is.matrix(eval(m$data, parent.frame())))
+    if (is.matrix(eval(m$data, parent.frame())))
         m$data <- as.data.frame(data)
+
     ## need stats:: for non-standard evaluation
     m[[1L]] <- quote(stats::model.frame)
     m$... <- NULL
     mf <- eval(m, parent.frame())
     DATA <- list(mf[,1], mf[,2])
+
     y <- do.call("posthocTGH", c(DATA, list(...)))
     y
 }
